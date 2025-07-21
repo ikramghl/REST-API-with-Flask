@@ -10,7 +10,7 @@ users = {}
 def get_users():
     return jsonify(users)
 
-# GET a specific user by ID
+# GET a single user by ID
 @app.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     user = users.get(user_id)
@@ -30,7 +30,7 @@ def create_user():
     users[user_id] = data
     return jsonify({'message': 'User created successfully'}), 201
 
-# PUT - Update an existing user
+# PUT - Update an existing user by ID
 @app.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
     if user_id not in users:
@@ -39,7 +39,7 @@ def update_user(user_id):
     users[user_id].update(data)
     return jsonify({'message': 'User updated successfully'})
 
-# DELETE - Remove a user
+# DELETE - Remove a user by ID
 @app.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
     if user_id in users:
